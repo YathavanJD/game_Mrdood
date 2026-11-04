@@ -1,0 +1,9 @@
+body{font-family:system-ui,sans-serif;margin:0;padding:20px;color:#111}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+button{background:#ff6a00;color:#fff;border:0;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer}
+main{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+figure{margin:0;border:2px dashed #bbb;border-radius:12px;padding:12px;text-align:center;break-inside:avoid}
+figure svg{width:100%;height:auto}figcaption{display:flex;flex-direction:column;gap:2px}
+.rev{color:#c00;font-weight:800;padding:60px 0}
+@media print{header{display:none}body{padding:0}}
+@media (max-width:640px){main{grid-template-columns:repeat(2,1fr)}}

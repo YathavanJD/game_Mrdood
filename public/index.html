@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#120f0c">
+<meta name="referrer" content="no-referrer">
+<title>Mr.DooD QR Hunt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Unbounded:wght@600;800&display=swap">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<main id="app">
+  <section class="screen" id="s-load"><div class="loader"><i></i><i></i><i></i></div></section>
+
+  <section class="screen" id="s-welcome" hidden>
+    <div class="hero">
+      <div class="logo-stack" aria-hidden="true"><span>M</span><span>r</span><span>.</span><span>D</span><span>o</span><span>o</span><span>D</span></div>
+      <h1 id="w-title">Mr.DooD QR Hunt</h1>
+      <p id="w-desc" class="lead"></p>
+      <ol class="how">
+        <li>Enter your name</li><li>Find the 7 hidden QR codes</li><li>Scan each one with your phone camera</li><li>Collect the letters and type the secret word</li>
+      </ol>
+      <button class="btn big" id="b-start">Start game</button>
+      <p id="w-closed" class="note" hidden></p>
+    </div>
+  </section>
+
+  <section class="screen" id="s-register" hidden>
+    <form class="card" id="f-reg" novalidate>
+      <h2>Who’s playing?</h2>
+      <p class="muted">Your name appears on the winners board.</p>
+      <label for="i-name">Your name</label>
+      <input id="i-name" maxlength="24" autocomplete="nickname" autocapitalize="words" placeholder="e.g. Dilshan">
+      <p class="err" id="e-reg" role="alert"></p>
+      <button class="btn big" id="b-reg" type="submit"><span>Join the hunt</span></button>
+    </form>
+  </section>
+
+  <section class="screen" id="s-hub" hidden>
+    <header class="hub-head">
+      <div><p class="muted" id="h-hello"></p><h2 id="h-count">0 of 7 letters</h2></div>
+      <div class="ring" id="ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18"/><circle id="ring-v" cx="22" cy="22" r="18"/></svg><b id="ring-t">0%</b></div>
+    </header>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="banner" id="banner" hidden></div>
+    <div class="slots" id="slots"></div>
+    <div class="card tip" id="tip"><b>Next step</b><p>Find a Mr.DooD QR code at the venue and scan it with your phone’s camera. The letter appears here once it’s verified.</p></div>
+  </section>
+
+  <section class="screen" id="s-challenge" hidden>
+    <form class="card glow" id="f-ans" novalidate>
+      <div class="word-row" id="word-row" aria-hidden="true"></div>
+      <h2>All seven letters. One word left.</h2>
+      <p class="muted">Put the letters in order and type the secret word.</p>
+      <label for="i-ans">Secret word</label>
+      <input id="i-ans" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="40" placeholder="Type it here">
+      <p class="err" id="e-ans" role="alert"></p>
+      <button class="btn big" id="b-ans" type="submit"><span>Unlock my prize</span></button>
+    </form>
+  </section>
+
+  <section class="screen" id="s-win" hidden>
+    <div class="win">
+      <svg class="trophy" viewBox="0 0 120 120" aria-hidden="true"><path class="tp" d="M36 16h48v30a24 24 0 0 1-48 0z"/><path class="th" d="M36 24H20c0 18 8 28 20 30M84 24h16c0 18-8 28-20 30"/><path class="tp" d="M54 70h12v16H54zM38 96h44v8H38z"/></svg>
+      <p class="muted">You finished in position</p>
+      <div class="rank" id="w-rank">#1</div>
+      <h2 id="w-name"></h2>
+      <p class="muted" id="w-time"></p>
+      <div class="claim"><span>Your claim code</span><b id="w-code"></b></div>
+      <p class="lead" id="w-how">Show this screen to the Mr.DooD team to claim your prize.</p>
+      <p class="note" id="w-noprize" hidden>All prize positions are taken, but you completed the hunt. Thank you for playing!</p>
+      <button class="btn ghost" id="b-board">See winners board</button>
+      <ol class="board" id="board" hidden></ol>
+    </div>
+  </section>
+</main>
+
+<div class="overlay" id="reveal" hidden aria-live="polite">
+  <div class="reveal-box">
+    <canvas id="burst" aria-hidden="true"></canvas>
+    <p class="muted" id="r-kicker">QR verified</p>
+    <div class="reveal-img"><img id="r-img" alt=""><span class="flash"></span></div>
+    <h3 id="r-title"></h3>
+    <p id="r-sub" class="muted"></p>
+    <button class="btn" id="r-ok">Continue</button>
+  </div>
+</div>
+<div class="overlay" id="oops" hidden role="alertdialog" aria-labelledby="o-title">
+  <div class="reveal-box err-box">
+    <svg viewBox="0 0 64 64" class="x" aria-hidden="true"><circle cx="32" cy="32" r="28"/><path d="M22 22l20 20M42 22L22 42"/></svg>
+    <h3 id="o-title"></h3><p id="o-msg" class="muted"></p>
+    <button class="btn" id="o-ok">OK</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="/assets/game.js"></script>
+</body>
+</html>

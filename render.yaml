@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mrdood-qr-hunt
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PUBLIC_URL          # e.g. https://mrdood-qr-hunt.onrender.com (embedded in the QR codes)
+        sync: false
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASSWORD      # first-run super admin password (10+ chars)
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL   # REQUIRED on Render: the disk is ephemeral
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
